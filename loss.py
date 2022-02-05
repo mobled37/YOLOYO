@@ -24,7 +24,7 @@ def intersection_over_union(box1, box2):
 class YoloLoss(nn.Module) :
     def __init__(self, S=7, B=2, C=20):
         super(YoloLoss, self).__init__()
-        self.mse == nn.MSELoss(reduction="sum")
+        self.mse = nn.MSELoss(reduction="sum")
         self.S = S
         self.B = B
         self.C = C
