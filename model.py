@@ -94,7 +94,7 @@ class Yolov1(nn.Module):
 
         return nn.Sequential(*layers)
 
-    def _create_fcs(split_size, num_boxes, num_classes):
+    def _create_fcs(self, split_size, num_boxes, num_classes):
         s, b, c = split_size, num_boxes, num_classes
         return nn.Sequential(
             nn.Flatten(),
