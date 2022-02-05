@@ -101,7 +101,7 @@ class Yolov1(nn.Module):
             nn.Linear(1024 * s * s, 4096),  # Original paper this should be 4096
             nn.Dropout(0.0),
             nn.LeakyReLU(0.1),
-            nn.Linear(496, s * s * (c + b * 5)),  # (S, S, 30) C+B*5 = 30
+            nn.Linear(4096, s * s * (c + b * 5)),  # (S, S, 30) C+B*5 = 30
         )
 
 
