@@ -66,8 +66,8 @@ class UrbanSoundDataset(Dataset):
         return signal
 
     def _get_audio_sample_path(self, index):
-        fold = f"fold{self.annotations.iloc[index, 2]}"
-        path = os.path.join(self.audio_dir, fold, self.annotations.iloc[index, 0])
+        # fold = f"fold{self.annotations.iloc[index, 2]}"
+        path = os.path.join(self.audio_dir, self.annotations.iloc[index, 0])
         return path
 
     def _get_audio_sample_label(self, index):
