@@ -3,7 +3,6 @@ import torch
 from torch.utils.data import Dataset
 import pandas as pd
 import torchaudio
-import soundfile as sf
 
 class UrbanSoundDataset(Dataset):
 
@@ -67,16 +66,16 @@ class UrbanSoundDataset(Dataset):
         return signal
 
     def _get_audio_sample_path(self, index):
-        fold = f"fold{self.annotations.iloc[index, 5]}"
+        fold = f"fold{self.annotations.iloc[index, 2]}"
         path = os.path.join(self.audio_dir, fold, self.annotations.iloc[index, 0])
         return path
 
     def _get_audio_sample_label(self, index):
-        return self.annotations.iloc[index, 6]
+        return self.annotations.iloc[index, 1]
 
 if __name__ == "__main__":
-    ANNOTATIONS_FILE = "/Users/valleotb/Downloads/UrbanSound8K/metadata/UrbanSound8K.csv"
-    AUDIO_DIR = "/Users/valleotb/Downloads/LibriSpeech/test-clean/908/31957"
+    ANNOTATIONS_FILE = "/Users/valleotb/Desktop/Valleotb/librispeech_metadata/metadata.csv"
+    AUDIO_DIR = "/Users/valleotb/Desktop/Valleotb/librispeech_processed"
     SAMPLE_RATE = 22050
     NUM_SAMPLES = 22050
 
@@ -104,4 +103,4 @@ if __name__ == "__main__":
                             )
     print(f"There are {len(usd)} samples in the dataset.")
 
-    signal, label = usd[1]
+    # signal, label = usd[0]
