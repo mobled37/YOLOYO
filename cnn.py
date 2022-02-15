@@ -7,7 +7,7 @@ class CNNNetwork(nn.Module):    # network build할땐 무조건 nn.Module
         super().__init__()
         # 4 conv blocks / flatten / linear / softmax
         self.conv1 = nn.Sequential(
-            nn.Conv2d(
+            nn.Conv1d(
                 in_channels=1,
                 out_channels=16,
                 kernel_size=3,
@@ -15,10 +15,10 @@ class CNNNetwork(nn.Module):    # network build할땐 무조건 nn.Module
                 padding=2
             ),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2)
+            nn.MaxPool1d(kernel_size=2)
         )
         self.conv2 = nn.Sequential(
-            nn.Conv2d(
+            nn.Conv1d(
                 in_channels=16,     # output of previous conv channel
                 out_channels=32,
                 kernel_size=3,
@@ -26,10 +26,10 @@ class CNNNetwork(nn.Module):    # network build할땐 무조건 nn.Module
                 padding=2
             ),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2)
+            nn.MaxPool1d(kernel_size=2)
         )
         self.conv3 = nn.Sequential(
-            nn.Conv2d(
+            nn.Conv1d(
                 in_channels=32,
                 out_channels=64,
                 kernel_size=3,
@@ -37,10 +37,10 @@ class CNNNetwork(nn.Module):    # network build할땐 무조건 nn.Module
                 padding=2
             ),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2)
+            nn.MaxPool1d(kernel_size=2)
         )
         self.conv4 = nn.Sequential(
-            nn.Conv2d(
+            nn.Conv1d(
                 in_channels=64,
                 out_channels=128,
                 kernel_size=3,
@@ -48,11 +48,11 @@ class CNNNetwork(nn.Module):    # network build할땐 무조건 nn.Module
                 padding=2
             ),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2)
+            nn.MaxPool1d(kernel_size=2)
         )
         self.flatten = nn.Flatten()
-        self.linear = nn.Linear(128 * 5 * 4, 10)       # (output of last conv block, number of classes)
-        self.softmax = nn.Softmax(dim=1)
+        self.linear = nn.Linear(8320, 2)        # (output of last conv block, number of classes)
+        self.softmax = nn.Sigmoid()
 
     def forward(self, input_data):
         x = self.conv1(input_data)
