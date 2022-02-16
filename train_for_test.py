@@ -4,7 +4,7 @@ import torchaudio
 from torch import nn
 from torch.utils.data import DataLoader
 from custom_dataset_fixed2 import PSAD_Dataset
-from cnn import CNNNetwork
+from resnet1d.cnn1d import CNN
 
 BATCH_SIZE = 128
 EPOCHS = 10
@@ -80,7 +80,13 @@ if __name__ == "__main__":
 
 
     # construct model and assign it to device
-    cnn = CNNNetwork().to(device)
+    cnn = CNN(
+        in_channels=1,
+        out_channels=1,
+        n_len_seg=256,
+        n_classes=1,
+        device=device
+    ).to(device)
 
     # instantiate loss function + optimiser
     loss_fn = nn.BCELoss()
